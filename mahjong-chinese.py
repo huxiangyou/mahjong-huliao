@@ -77,7 +77,7 @@ if True:#Fanzhong
 	大于五=Fanzhong(lang.大于五,next(id_iter),12,{无字})
 	组合龙=Fanzhong(lang.组合龙,next(id_iter),12,set())
 	全不靠=Fanzhong(lang.全不靠,next(id_iter),12,{五门齐,门前清})
-	三暗刻=Fanzhong(lang.三暗刻,next(id_iter),16,set())
+	三暗刻=Fanzhong(lang.三暗刻,next(id_iter),16,{双暗刻})
 	三同刻=Fanzhong(lang.三同刻,next(id_iter),16,{双同刻})
 	全带五=Fanzhong(lang.全带五,next(id_iter),16,{断幺})
 	一色三步高=Fanzhong(lang.一色三步高,next(id_iter),16,set())
@@ -445,6 +445,15 @@ def fanzhong_and_output(shoupai9:list,hupaixing:list,did_mopai:bool,is_kongting:
 						if fu_shangweizuhe in fu_nums:
 							taosuanyici_flag=True
 							continue
+
+					if sum(i[0]=='k' for i in hupaixing_part)>=2:
+						if did_mopai==False and any(mopai in hupaixing[i] for i in range(5) if i not in fu_nums):
+							fanzhong.append(双暗刻)
+							for i in fu_nums:
+								fu_zuheguo[i]=True
+							if fu_shangweizuhe in fu_nums:
+								taosuanyici_flag=True
+								continue
 
 					if hupaixing_part[0]==hupaixing_part[1] and hupaixing_part[0][0]==hupaixing_part[1][0]=='s':
 						fanzhong.append(一般高)
