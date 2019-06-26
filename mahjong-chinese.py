@@ -247,7 +247,7 @@ def fanzhong_and_output(shoupai9:list,hupaixing:list,did_mopai:bool,is_kongting:
 		if hupaixing[0][0]=='b' and all(['b',i,None,None] in hupaixing for i in range(31,38)):
 			fanzhong.append(七星不靠)
 
-		if all(i[0] in ('a','k') and i[1]%2==0 and i[1]<30 for i in hupaixing):
+		if len(hupaixing)==5 and all(i[0] in ('a','k') and i[1]%2==0 and i[1]<30 for i in hupaixing):
 			fanzhong.append(全双刻)
 
 		if sum(shoupai9)==14 and (sum(shoupai9[1:10])==14 or sum(shoupai9[11:20])==14 or sum(shoupai9[21:30])==14):
@@ -581,9 +581,6 @@ def main(shoupai=None,shoupai1=None,dapai=False,is_number_only=False):
 				return
 			elif shoupai_lower in ("example","examples","举例","舉例","例","test","tests","测试","測試"):
 				main(shoupai=test.test())
-				return
-			elif shoupai_lower in dir(lang) and shoupai_lower[0]!='_':
-				print(eval('s.'+shoupai_lower))
 				return
 
 		for i in (' ','!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[','\\',']','^','_','`','{','|','}','~','　'):
